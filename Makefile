@@ -1,12 +1,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=float-test
-PKG_VERSION:=0.8,5
+PKG_VERSION:=0.8.5
 PKG_RELEASE:=1
+PKG_LICENSE:=Apache-2.0 MIT
+PKG_LICENSE_FILES:=LICENSE-APACHE LICENSE-MIT
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_DATE:=2021-06-12
-PKG_SOURCE_VERSION:=be8ccd47564f413d9b83b8c411c0458edce2b80f
+PKG_SOURCE_VERSION:=245dd4b5b6ec3b99855b452b052d887171b76665
 PKG_SOURCE_URL:=https://github.com/neg2led/float_test.git
 PKG_MIRROR_HASH:=skip
 
@@ -33,7 +35,7 @@ CONFIGURE_ARGS += \
 define Build/Compile
         cd $(PKG_BUILD_DIR) && $(TARGET_CONFIGURE_OPTS) $(CONFIGURE_VARS) cargo update && \
 	  $(TARGET_CONFIGURE_OPTS) $(CONFIGURE_VARS) cargo build -v --release \
-	  --target $(REAL_GNU_TARGET_NAME) --features 'pcre2'
+	  --target $(REAL_GNU_TARGET_NAME)
 endef
 
 define Package/$(PKG_NAME)
@@ -50,7 +52,7 @@ endef
 
 define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/bin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/target/$(REAL_GNU_TARGET_NAME)/release/rg $(1)/bin/rg
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/target/$(REAL_GNU_TARGET_NAME)/release/float_test $(1)/bin/float_test
 
 endef
 
