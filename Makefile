@@ -38,7 +38,7 @@ define Build/Compile
 	  --target $(REAL_GNU_TARGET_NAME)
 endef
 
-define Package/$(PKG_NAME)
+define Package/float-test
     SECTION:=testing
     CATEGORY:=Testing
     DEPENDS:=@!SMALL_FLASH @!LOW_MEMORY_FOOTPRINT
@@ -46,14 +46,14 @@ define Package/$(PKG_NAME)
     URL:=https://github.com/neg2led
 endef
 
-define Package/$(PKG_NAME)/description
+define Package/float-test/description
 ripgrep (rg) recursively searches directories for a regex pattern while respecting your gitignore
 endef
 
-define Package/$(PKG_NAME)/install
+define Package/float-test/install
 	$(INSTALL_DIR) $(1)/bin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/target/$(REAL_GNU_TARGET_NAME)/release/float_test $(1)/bin/float_test
 
 endef
 
-$(eval $(call BuildPackage,$(PKG_NAME)))
+$(eval $(call BuildPackage,float-test))
